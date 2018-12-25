@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+@mixin envPos($position, $margin, $top, $bottom, $left, $right, $width, $height, $zIndex) {
+  position: $position;
+  margin: $margin;
+  top: $top;
+  bottom: $bottom;
+  left: $left;
+  right: $right;
+  width: $width;
+  height: $height;
+  z-index: $zIndex;
+}
+
+@mixin envBorder($border-radius, $border-top, $border-bottom, $border-right, $border-left) {
+  border-radius: $border-radius;
+  border-top: $border-top;
+  border-bottom: $border-bottom;
+  border-right: $border-right;
+  border-left: $border-left;
+}
+
+$envBack: #bac6bf;
+$envMsg: #ee5252;
+$envMsgBorder: #da4848;
+$envOpn: #DAEDE2;
+$envFront: #DAEDE2;
+
+.envelope-area {
+  @include envPos(absolute, auto, 0, 0, 0, 0, 200px, 120px, 6);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.envelope-back {
+  @include envPos(absolute, auto, 0, 0, 0, 0, 200px, 120px, 1);
+  @include envBorder(5px, none, none, none, none);
+  background: $envBack;
+}
+
+.envelope-message {
+  @include envPos(absolute, auto, 0, 0, 0, 0, 170px, 90px, 2);
+  @include envBorder(5px, 2px solid $envMsgBorder, 2px solid $envMsgBorder, 2px solid $envMsgBorder, 2px solid $envMsgBorder);
+  background: $envMsg;
+  transition: top 2s, z-index 1s;
+  text-align: center;
+  padding-top: 45px;
+}
+
+.small-quote {
+  color: white;
+  font-size: 5px;
+}
+
+.envelope-message-area {
+  @include envPos(absolute, auto, -50px, 0, 0, 0, 140px, 70px, 0);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.envelope-opening {
+  @include envPos(absolute, auto, 0, 0, 0, 0, 0, 0, 3);
+  @include envBorder(5px, 60px solid $envOpn, 60px solid transparent, 100px solid transparent, 100px solid transparent);
+  transition: all 1s;
+  transform-origin: top;
+}
+
+.envelope-front {
+  @include envPos(absolute, auto, 0, 0, 0, 0, 0, 0, 5);
+  @include envBorder(5px, 60px solid transparent, 60px solid $envFront, 100px solid $envFront, 100px solid $envFront);
+  transition: all 1s;
+}
+
+.envelope-shadow {
+  @include envPos(absolute, auto, 0, 0, 0, 0, 200px, 120px, 0);
+  @include envBorder(10px, none, none, none, none);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 1s;
+}
+
+.display-message {
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar {
+    width: 1px;
+    background-color: #da4848;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border: 2px solid #555555;
+  }
+
+  @include envPos(absolute, auto, 0, 0, 0, 0, 0, 0, 3);
+  @include envBorder(10px, 10px solid $envMsgBorder, 10px solid $envMsgBorder, 10px solid $envMsgBorder, 10px solid $envMsgBorder);
+  background: $envMsg;
+  color: white;
+  transition: all 2s;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.close-message {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  outline: none;
+  top: -10px;
+  right: -5px;
+}
+
+.quote-information {
+  max-width: 500px;
+  max-height: 20rem;
+}
+
+.display-message .quote-information .quote {
+  font-size: 0;
+  text-align: center;
+  transition: all 2s;
+}
+
+.display-message .quote-information .author {
+  font-size: 0;
+  text-align: right;
+  transition: all 2s;
+}
+
+.get-random-envelope {
+  @include envPos(absolute, auto, 300px, 0, 0, 0, 150px, 25px, 1);
+  @include envBorder(10px, none, none, none, none);
+  color: white;
+  background: black;
+  text-decoration: none;
+  text-align: center;
+  outline: none;
+
+  &:hover {
+    background: white;
+    color: black;
+  }
+}
+
+.open-envelope {
+  transform: rotateX(-270deg);
+  border-top: 60px solid #a8a8a8;
+}
+
+.push-message {
+  top: -40px;
+  z-index: 5;
+}
+
+.envelope-glow {
+  box-shadow: 0 0 5px rgba(247, 146, 146, 1);
+}
+
+.envelope-msg-area-show {
+  z-index: 8;
+}
+
+.view-message {
+  width: 600px;
+  height: 400px;
+  opacity: 1;
+  z-index: 10;
+}

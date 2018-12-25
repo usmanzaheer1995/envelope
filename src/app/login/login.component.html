@@ -1,0 +1,33 @@
+<div class="login">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 m-auto content">
+        <h1 class="display-4 text-center">Log In</h1>
+        <p class="lead text-center">Log in to view your letter</p>
+        <form #form="ngForm" autocomplete="off" (ngSubmit)="login(form)">
+          <div class="form-group">
+            <input required type="text" [(ngModel)]="model.username" #username="ngModel" class="form-control form-control-lg"
+              placeholder="Username" name="username" />
+
+            <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+              {{username.errors.required ? 'Username is required' : username.errors.invalid ? 'Username is invalid' : ''}}
+            </div>
+          </div>
+          <div class="form-group">
+            <input required type="password" [(ngModel)]="model.password" #password="ngModel" class="form-control form-control-lg"
+              placeholder="Password" name="password" />
+
+            <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+              {{password.errors.required ? 'Password is required' : password.errors.invalid ? 'Password is invalid' : ''}}
+            </div>
+          </div>
+
+          <div *ngIf="beforeDueDate" class="alert alert-danger">
+            {{beforeDueDate}}
+          </div>
+          <input [disabled]="form.invalid" type="submit" class="btn btn-danger btn-block mt-4" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
